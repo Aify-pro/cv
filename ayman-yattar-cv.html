@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aymann Yattar — Ingénieur Systèmes</title>
+<title>Aymann Yattar — Ingénieur Systèmes & IA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
@@ -14,105 +14,194 @@
   --color-surface-offset:#f0ede9;--color-divider:#dcd9d5;--color-border:#d4d1ca;
   --color-text:#1e1c17;--color-text-muted:#6b6965;--color-text-faint:#a8a7a3;
   --color-primary:#01696f;--color-primary-hover:#0c4e54;
-  --color-primary-highlight:#d4e8e6;
+  --color-primary-hl:#d4e8e6;
+  --color-accent:#437a22;--color-accent-hl:#d4dfcc;
   --shadow-sm:0 1px 3px rgba(30,28,23,.07),0 1px 2px rgba(30,28,23,.04);
   --shadow-md:0 4px 14px rgba(30,28,23,.09),0 2px 4px rgba(30,28,23,.05);
-  --radius-sm:.375rem;--radius-md:.5rem;--radius-lg:.75rem;--radius-xl:1rem;--radius-full:9999px;
-  --font-display:'Instrument Serif',Georgia,serif;
-  --font-body:'DM Sans','Helvetica Neue',sans-serif;
+  --r-sm:.375rem;--r-md:.5rem;--r-lg:.75rem;--r-xl:1rem;--r-full:9999px;
+  --font-d:'Instrument Serif',Georgia,serif;
+  --font-b:'DM Sans','Helvetica Neue',sans-serif;
 }
 [data-theme="dark"]{
   --color-bg:#0e0d0b;--color-surface:#161513;--color-surface-2:#1b1a18;
   --color-surface-offset:#1f1e1c;--color-divider:#252422;--color-border:#363533;
   --color-text:#cccac7;--color-text-muted:#76756f;--color-text-faint:#555450;
   --color-primary:#4d9aa6;--color-primary-hover:#60adb9;
-  --color-primary-highlight:#1e3538;
+  --color-primary-hl:#1a3538;
+  --color-accent:#6daa45;--color-accent-hl:#2a3d22;
   --shadow-sm:0 1px 3px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.2);
   --shadow-md:0 4px 16px rgba(0,0,0,.4),0 2px 4px rgba(0,0,0,.25);
 }
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
-body{font-family:var(--font-body);font-size:clamp(.9375rem,.875rem + .25vw,1.0625rem);color:var(--color-text);background:var(--color-bg);line-height:1.65;min-height:100dvh}
+body{font-family:var(--font-b);font-size:clamp(.9rem,.85rem + .25vw,1.05rem);color:var(--color-text);background:var(--color-bg);line-height:1.65;min-height:100dvh}
 a{color:var(--color-primary);text-decoration:none}a:hover{color:var(--color-primary-hover)}
 button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
 ::selection{background:rgba(1,105,111,.15);color:var(--color-text)}
 a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
+
 /* TOGGLE */
-.theme-toggle{position:fixed;top:1rem;right:1rem;z-index:100;width:38px;height:38px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);color:var(--color-text-muted)}
+.theme-toggle{position:fixed;top:1rem;right:1rem;z-index:100;width:38px;height:38px;border-radius:var(--r-full);display:flex;align-items:center;justify-content:center;background:var(--color-surface);border:1px solid var(--color-border);box-shadow:var(--shadow-sm);color:var(--color-text-muted)}
 .theme-toggle:hover{color:var(--color-primary);box-shadow:var(--shadow-md)}
+
 /* PAGE */
-.page{max-width:960px;margin:0 auto;padding:2.5rem 1.25rem}
+.page{max-width:980px;margin:0 auto;padding:2.5rem 1.25rem}
 @media(min-width:640px){.page{padding:3rem 2rem}}
 @media(min-width:1024px){.page{padding:4rem 2rem}}
-/* HEADER */
+
+/* ===== HEADER ===== */
 .cv-header{display:grid;grid-template-columns:1fr;gap:1.5rem;padding-bottom:2rem;border-bottom:1px solid var(--color-divider)}
-@media(min-width:640px){.cv-header{grid-template-columns:1fr auto;align-items:start}}
-.cv-name{font-family:var(--font-display);font-size:clamp(2rem,1.2rem + 2.2vw,3rem);line-height:1.05;letter-spacing:-.02em;font-weight:400}
+@media(min-width:580px){.cv-header{grid-template-columns:auto 1fr auto;align-items:start;gap:1.75rem}}
+
+/* PHOTO */
+.cv-photo{
+  width:96px;height:96px;border-radius:var(--r-full);
+  border:2px solid var(--color-border);
+  background:var(--color-surface-offset);
+  overflow:hidden;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.cv-photo img{width:100%;height:100%;object-fit:cover}
+.cv-photo-placeholder{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.25rem;width:100%;height:100%;color:var(--color-text-faint);
+  font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-align:center;padding:.25rem;
+}
+.cv-photo-placeholder svg{opacity:.5}
+.photo-upload-hint{
+  font-size:.6rem;color:var(--color-text-faint);margin-top:.25rem;
+  text-align:center;line-height:1.4;
+}
+
+.cv-id{flex:1}
+.cv-name{font-family:var(--font-d);font-size:clamp(1.75rem,1rem + 2.2vw,2.8rem);line-height:1.05;letter-spacing:-.02em;font-weight:400}
 .cv-name em{font-style:italic;color:var(--color-primary)}
-.cv-headline{margin-top:.5rem;font-size:clamp(.75rem,.7rem + .2vw,.8125rem);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
-.cv-profile{margin-top:1rem;font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);color:var(--color-text-muted);max-width:56ch;line-height:1.7}
-.cv-meta{display:flex;flex-direction:column;gap:.5rem;align-items:flex-start}
-@media(min-width:640px){.cv-meta{align-items:flex-end;text-align:right}}
-.meta-item{display:flex;align-items:center;gap:.5rem;font-size:clamp(.75rem,.7rem + .2vw,.8125rem);color:var(--color-text-muted)}
-@media(min-width:640px){.meta-item{flex-direction:row-reverse}}
-.meta-item svg{opacity:.55;flex-shrink:0}
+.cv-headline{margin-top:.4rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted)}
+.cv-profile{margin-top:.75rem;font-size:clamp(.8rem,.75rem + .25vw,.9rem);color:var(--color-text-muted);max-width:58ch;line-height:1.7}
+
+.cv-meta{display:flex;flex-direction:column;gap:.4rem;align-items:flex-start}
+@media(min-width:580px){.cv-meta{align-items:flex-end;text-align:right}}
+.meta-item{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--color-text-muted)}
+@media(min-width:580px){.meta-item{flex-direction:row-reverse}}
+.meta-item svg{opacity:.5;flex-shrink:0}
 .meta-item a{color:var(--color-text-muted)}.meta-item a:hover{color:var(--color-primary)}
-.meta-dob{margin-top:.75rem;font-size:.6875rem;color:var(--color-text-faint);padding:.125rem .75rem;background:var(--color-surface-offset);border-radius:var(--radius-full);border:1px solid var(--color-border);align-self:flex-start}
-@media(min-width:640px){.meta-dob{align-self:flex-end}}
-/* BODY LAYOUT */
+.meta-dob{margin-top:.5rem;font-size:.65rem;color:var(--color-text-faint);padding:.125rem .75rem;background:var(--color-surface-offset);border-radius:var(--r-full);border:1px solid var(--color-border);align-self:flex-start}
+@media(min-width:580px){.meta-dob{align-self:flex-end}}
+
+/* ===== EXPERTISE BANNER ===== */
+.expertise-banner{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;
+  margin-top:1.5rem;
+}
+@media(min-width:580px){.expertise-banner{grid-template-columns:repeat(4,1fr)}}
+.exp-domain{
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--r-lg);padding:.75rem 1rem;
+  display:flex;flex-direction:column;gap:.3rem;
+  box-shadow:var(--shadow-sm);
+}
+.exp-domain-icon{font-size:1.25rem;line-height:1}
+.exp-domain-label{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary)}
+.exp-domain-desc{font-size:.65rem;color:var(--color-text-muted);line-height:1.5}
+
+/* ===== BODY ===== */
 .cv-body{display:grid;gap:2rem;margin-top:2rem}
 @media(min-width:768px){.cv-body{grid-template-columns:210px 1fr;gap:2.5rem}}
 .sidebar{display:flex;flex-direction:column;gap:1.75rem}
 .main-content{display:flex;flex-direction:column;gap:2rem}
+
 /* SECTION TITLE */
-.section-title{font-size:.6875rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-primary);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
-.section-title::after{content:'';flex:1;height:1px;background:var(--color-divider)}
-.sidebar .section-title::after{display:none}
+.stitle{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.875rem;display:flex;align-items:center;gap:.6rem}
+.stitle::after{content:'';flex:1;height:1px;background:var(--color-divider)}
+.sidebar .stitle::after{display:none}
+
 /* SKILLS */
-.skill-block{margin-bottom:1.25rem}
+.skill-block{margin-bottom:1.1rem}
 .skill-block:last-child{margin-bottom:0}
-.skill-block-name{font-size:.6875rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.5rem}
-.pills{display:flex;flex-wrap:wrap;gap:.25rem .5rem}
-.pill{font-size:.6875rem;font-weight:500;padding:2px 10px;border-radius:var(--radius-full);background:var(--color-surface-offset);color:var(--color-text);border:1px solid var(--color-border);line-height:1.6}
-.pill-p{background:var(--color-primary-highlight);color:var(--color-primary);border-color:transparent}
+.sbn{font-size:.625rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.4rem}
+.pills{display:flex;flex-wrap:wrap;gap:.2rem .4rem}
+.pill{font-size:.625rem;font-weight:500;padding:2px 9px;border-radius:var(--r-full);background:var(--color-surface-offset);color:var(--color-text);border:1px solid var(--color-border);line-height:1.6}
+.pill-p{background:var(--color-primary-hl);color:var(--color-primary);border-color:transparent}
+.pill-g{background:var(--color-accent-hl);color:var(--color-accent);border-color:transparent}
+
+/* SKILL FEATURED */
+.skill-featured{
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--r-lg);padding:.875rem 1rem;
+  margin-bottom:1.1rem;box-shadow:var(--shadow-sm);
+}
+.skill-featured-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem}
+.skill-featured-dot{width:6px;height:6px;border-radius:var(--r-full);background:var(--color-primary);flex-shrink:0}
+.skill-featured-name{font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--color-text)}
+.skill-featured-list{list-style:none;display:flex;flex-direction:column;gap:.2rem}
+.skill-featured-list li{font-size:.65rem;color:var(--color-text-muted);padding-left:.75rem;position:relative;line-height:1.5}
+.skill-featured-list li::before{content:'›';position:absolute;left:0;color:var(--color-primary);font-weight:700}
+
 /* LANG */
-.lang-item{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--color-divider)}
+.lang-item{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--color-divider)}
 .lang-item:last-child{border-bottom:none}
-.lang-name{font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);font-weight:600}
-.lang-level{font-size:.75rem;color:var(--color-text-muted)}
+.lang-name{font-size:.8rem;font-weight:600}
+.lang-level{font-size:.65rem;color:var(--color-text-muted)}
+
 /* INTERESTS */
-.interest{display:flex;gap:.5rem;margin-bottom:.5rem;font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);color:var(--color-text-muted)}
-.interest strong{color:var(--color-text);min-width:60px;flex-shrink:0}
+.interest{display:flex;gap:.5rem;margin-bottom:.4rem;font-size:.8rem;color:var(--color-text-muted)}
+.interest strong{color:var(--color-text);min-width:56px;flex-shrink:0}
+
 /* EXP CARD */
 .exp-list{display:flex;flex-direction:column;gap:1rem}
-.exp-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow-sm);transition:box-shadow .16s ease}
+.exp-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--r-lg);padding:1.1rem 1.25rem;box-shadow:var(--shadow-sm);transition:box-shadow .16s ease}
 .exp-card:hover{box-shadow:var(--shadow-md)}
-.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem}
-.exp-company{font-weight:700;font-size:clamp(.9375rem,.875rem + .25vw,1.0625rem);color:var(--color-text)}
-.exp-role{font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);color:var(--color-primary);font-weight:500;margin-top:2px}
-.exp-period{font-size:.6875rem;color:var(--color-text-muted);flex-shrink:0;padding:2px 10px;background:var(--color-surface-offset);border-radius:var(--radius-full);border:1px solid var(--color-border);height:fit-content;white-space:nowrap}
-.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.25rem}
-.exp-bullets li{font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);color:var(--color-text-muted);line-height:1.6;padding-left:1rem;position:relative}
-.exp-bullets li::before{content:'';position:absolute;left:0;top:.58em;width:5px;height:5px;border-radius:var(--radius-full);background:var(--color-primary);opacity:.6}
+.exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.625rem}
+.exp-company{font-weight:700;font-size:.95rem;color:var(--color-text)}
+.exp-role{font-size:.8rem;color:var(--color-primary);font-weight:500;margin-top:1px}
+.exp-period{font-size:.65rem;color:var(--color-text-muted);flex-shrink:0;padding:2px 10px;background:var(--color-surface-offset);border-radius:var(--r-full);border:1px solid var(--color-border);white-space:nowrap;height:fit-content}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.2rem}
+.exp-bullets li{font-size:.8rem;color:var(--color-text-muted);line-height:1.6;padding-left:.9rem;position:relative}
+.exp-bullets li::before{content:'';position:absolute;left:0;top:.58em;width:4px;height:4px;border-radius:var(--r-full);background:var(--color-primary);opacity:.6}
+.exp-bullets li strong{color:var(--color-text);font-weight:600}
+
 /* SUB PROJECTS */
-.sub-projects{display:grid;gap:.75rem;margin-top:1rem}
+.sub-projects{display:grid;gap:.625rem;margin-top:.875rem}
 @media(min-width:480px){.sub-projects{grid-template-columns:1fr 1fr}}
-.sub-card{background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:.75rem 1rem}
-.sub-name{font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);font-weight:700;color:var(--color-text)}
-.sub-period{font-size:.6875rem;color:var(--color-primary);margin:.25rem 0 .5rem}
+.sub-card{background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--r-md);padding:.625rem .875rem}
+.sub-name{font-size:.8rem;font-weight:700;color:var(--color-text)}
+.sub-period{font-size:.625rem;color:var(--color-primary);margin:.2rem 0 .4rem}
 .sub-bullets{list-style:none}
-.sub-bullets li{font-size:.6875rem;color:var(--color-text-muted);padding-left:.75rem;position:relative;line-height:1.6}
-.sub-bullets li::before{content:'';position:absolute;left:0;top:.45em;width:4px;height:4px;border-radius:var(--radius-full);background:var(--color-primary);opacity:.5}
+.sub-bullets li{font-size:.625rem;color:var(--color-text-muted);padding-left:.6rem;position:relative;line-height:1.55}
+.sub-bullets li::before{content:'';position:absolute;left:0;top:.42em;width:3px;height:3px;border-radius:var(--r-full);background:var(--color-primary);opacity:.5}
+
+/* FOCUS SECTION */
+.focus-grid{display:grid;gap:.75rem}
+@media(min-width:480px){.focus-grid{grid-template-columns:1fr 1fr}}
+.focus-card{
+  background:var(--color-surface);border:1px solid var(--color-border);
+  border-radius:var(--r-lg);padding:1rem 1.1rem;
+  box-shadow:var(--shadow-sm);
+}
+.focus-card-title{
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--color-primary);margin-bottom:.625rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.focus-card-title svg{flex-shrink:0;opacity:.8}
+.focus-list{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+.focus-list li{font-size:.75rem;color:var(--color-text-muted);padding-left:.75rem;position:relative;line-height:1.55}
+.focus-list li::before{content:'›';position:absolute;left:0;color:var(--color-primary);font-weight:700;line-height:1.4}
+.focus-list li strong{color:var(--color-text);font-weight:600}
+
 /* EDU */
-.edu-wrap{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:1.25rem;box-shadow:var(--shadow-sm)}
-.edu-item{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.625rem 0;border-bottom:1px solid var(--color-divider)}
+.edu-wrap{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--r-lg);padding:1rem 1.25rem;box-shadow:var(--shadow-sm)}
+.edu-item{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.5rem 0;border-bottom:1px solid var(--color-divider)}
 .edu-item:first-child{padding-top:0}.edu-item:last-child{border-bottom:none;padding-bottom:0}
-.edu-degree{font-size:clamp(.8125rem,.75rem + .3vw,.9375rem);font-weight:600;color:var(--color-text)}
-.edu-year{font-size:.6875rem;color:var(--color-text-muted);flex-shrink:0}
+.edu-degree{font-size:.8rem;font-weight:600;color:var(--color-text)}
+.edu-year{font-size:.65rem;color:var(--color-text-muted);flex-shrink:0}
+
 /* FOOTER */
 .cv-footer{margin-top:3rem;padding-top:1.25rem;border-top:1px solid var(--color-divider);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
-.cv-footer span{font-size:.6875rem;color:var(--color-text-faint)}
-.cv-footer a{font-size:.6875rem;color:var(--color-primary);font-weight:500}
-@media print{.theme-toggle{display:none}.exp-card,.edu-wrap,.sub-card{box-shadow:none;border:1px solid #ccc}@page{margin:1.5cm;size:A4}}
+.cv-footer span{font-size:.65rem;color:var(--color-text-faint)}
+.cv-footer a{font-size:.65rem;color:var(--color-primary);font-weight:500}
+
+@media print{.theme-toggle{display:none}.exp-card,.edu-wrap,.sub-card,.focus-card,.exp-domain{box-shadow:none;border:1px solid #ccc}@page{margin:1.5cm;size:A4}}
 </style>
 </head>
 <body>
@@ -123,83 +212,154 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
 
 <div class="page">
 
+  <!-- ===== HEADER ===== -->
   <header class="cv-header">
-    <div>
-      <h1 class="cv-name">Aymann <em>Yattar</em></h1>
-      <p class="cv-headline">Ingénieur Systèmes</p>
-      <p class="cv-profile">Ingénieur systèmes senior, reconnu pour son sérieux, sa fiabilité et sa capacité à évoluer dans des environnements IT et industriels complexes. Orienté solutions, stabilité et performance, avec une forte culture du travail bien fait et de la responsabilité technique.</p>
+
+    <!-- PHOTO -->
+    <div class="cv-photo" id="photoWrap">
+      <img id="photoImg" src="" alt="Photo Aymann Yattar" style="display:none">
+      <div class="cv-photo-placeholder" id="photoPlaceholder">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Ajouter<br>une photo</span>
+      </div>
+      <input type="file" id="photoInput" accept="image/*" style="position:absolute;inset:0;opacity:0;cursor:pointer" title="Cliquer pour ajouter une photo">
     </div>
+
+    <!-- IDENTITY -->
+    <div class="cv-id">
+      <h1 class="cv-name">Aymann <em>Yattar</em></h1>
+      <p class="cv-headline">Ingénieur Systèmes · IA · Plateformes SaaS</p>
+      <p class="cv-profile">Ingénieur systèmes senior avec plus de 20 ans d'expérience IT et industrielle. Expert en <strong>conception de bases de données</strong>, <strong>workflows intelligents</strong>, <strong>intégration IA</strong> et <strong>architecture de plateformes SaaS</strong>. Fondateur d'Enigma-sys — solutions technologiques pour marchés africains.</p>
+    </div>
+
+    <!-- CONTACT -->
     <div class="cv-meta">
       <div class="meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <a href="mailto:yattarayman@gmail.com">yattarayman@gmail.com</a>
       </div>
       <div class="meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.36-.36a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.36-.36a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         <span>+225 07 79 99 99 55</span>
       </div>
       <div class="meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         <a href="https://github.com/Aify-pro" target="_blank" rel="noopener noreferrer">github.com/Aify-pro</a>
       </div>
       <div class="meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         <a href="https://linkedin.com/in/aymanyattar" target="_blank" rel="noopener noreferrer">linkedin.com/in/aymanyattar</a>
       </div>
       <div class="meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>Rue du canal, Bietry — Abidjan, CI</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Abidjan, Côte d'Ivoire</span>
       </div>
       <div class="meta-dob">Né le 29 Janvier 1985</div>
     </div>
   </header>
 
+  <!-- ===== EXPERTISE BANNER ===== -->
+  <div class="expertise-banner">
+    <div class="exp-domain">
+      <div class="exp-domain-icon">🗄️</div>
+      <div class="exp-domain-label">Bases de données</div>
+      <div class="exp-domain-desc">Conception, modélisation, optimisation — relationnelles & vectorielles</div>
+    </div>
+    <div class="exp-domain">
+      <div class="exp-domain-icon">⚙️</div>
+      <div class="exp-domain-label">Workflows & Automation</div>
+      <div class="exp-domain-desc">Processus métiers intelligents, orchestration n8n, agents IA</div>
+    </div>
+    <div class="exp-domain">
+      <div class="exp-domain-icon">🤖</div>
+      <div class="exp-domain-label">Intelligence Artificielle</div>
+      <div class="exp-domain-desc">IA appliquée, intégration LLM, chatbots, optimisation par l'IA</div>
+    </div>
+    <div class="exp-domain">
+      <div class="exp-domain-icon">🚀</div>
+      <div class="exp-domain-label">Plateformes SaaS</div>
+      <div class="exp-domain-desc">Architecture multi-tenant, backends API, déploiement cloud</div>
+    </div>
+  </div>
+
+  <!-- ===== BODY ===== -->
   <div class="cv-body">
 
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
       <section>
-        <div class="section-title">Compétences</div>
+        <div class="stitle">Compétences</div>
+
+        <!-- Featured skills -->
+        <div class="skill-featured">
+          <div class="skill-featured-header">
+            <div class="skill-featured-dot" style="background:var(--color-primary)"></div>
+            <div class="skill-featured-name">Bases de données</div>
+          </div>
+          <ul class="skill-featured-list">
+            <li>Conception & modélisation de schémas</li>
+            <li>Optimisation des requêtes & performances</li>
+            <li>BDD relationnelles (PostgreSQL, MySQL, MariaDB)</li>
+            <li>Notions : hiérarchiques, orientées objets, vectorielles</li>
+            <li>Analyse & exploitation de données applicatives</li>
+          </ul>
+        </div>
+
+        <div class="skill-featured">
+          <div class="skill-featured-header">
+            <div class="skill-featured-dot" style="background:var(--color-accent)"></div>
+            <div class="skill-featured-name">Workflows & IA</div>
+          </div>
+          <ul class="skill-featured-list">
+            <li>Conception de workflows intelligents (n8n)</li>
+            <li>Déploiement & intégration d'agents IA</li>
+            <li>Automatisation de processus métiers</li>
+            <li>Intégration LLM & chatbots multi-canal</li>
+            <li>Optimisation de systèmes existants par l'IA</li>
+          </ul>
+        </div>
+
+        <div class="skill-featured">
+          <div class="skill-featured-header">
+            <div class="skill-featured-dot" style="background:var(--color-primary)"></div>
+            <div class="skill-featured-name">Architecture SaaS</div>
+          </div>
+          <ul class="skill-featured-list">
+            <li>Conception d'architectures multi-tenant</li>
+            <li>Conception de backends applicatifs & API</li>
+            <li>Déploiement cloud & infrastructure (Docker, Linux)</li>
+            <li>Intégration logicielle systèmes complexes</li>
+          </ul>
+        </div>
+
         <div class="skill-block">
-          <div class="skill-block-name">Systèmes &amp; Réseaux</div>
+          <div class="sbn">Systèmes & Réseaux</div>
           <div class="pills">
             <span class="pill">Windows Server</span><span class="pill">Linux</span>
             <span class="pill">TCP/IP</span><span class="pill">VLAN</span>
             <span class="pill">Cisco</span><span class="pill">Firewall</span>
           </div>
         </div>
+
         <div class="skill-block">
-          <div class="skill-block-name">Bases de données</div>
-          <div class="pills">
-            <span class="pill">PostgreSQL</span><span class="pill">MySQL</span>
-            <span class="pill">MariaDB</span><span class="pill">SQL</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-name">Développement</div>
+          <div class="sbn">Développement</div>
           <div class="pills">
             <span class="pill">JavaScript</span><span class="pill">Python</span>
             <span class="pill">C++</span><span class="pill">PHP</span><span class="pill">HTML/CSS</span>
           </div>
         </div>
+
         <div class="skill-block">
-          <div class="skill-block-name">Automatisation &amp; IA</div>
-          <div class="pills">
-            <span class="pill pill-p">n8n</span>
-            <span class="pill pill-p">Agents IA</span>
-            <span class="pill pill-p">Workflows</span>
-            <span class="pill">PLC / Automates</span>
-          </div>
-        </div>
-        <div class="skill-block">
-          <div class="skill-block-name">Embarqué &amp; IoT</div>
+          <div class="sbn">Embarqué & IoT</div>
           <div class="pills">
             <span class="pill">Arduino</span><span class="pill">ESP32</span>
-            <span class="pill">Capteurs</span><span class="pill">Actionneurs</span>
+            <span class="pill">PLC/Automates</span>
           </div>
         </div>
+
         <div class="skill-block">
-          <div class="skill-block-name">ERP / CRM</div>
+          <div class="sbn">ERP / CRM</div>
           <div class="pills">
             <span class="pill">Sage 100</span><span class="pill">Sage 500</span><span class="pill">Odoo</span>
           </div>
@@ -207,64 +367,135 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
       </section>
 
       <section>
-        <div class="section-title">Langues</div>
+        <div class="stitle">Langues</div>
         <div class="lang-item"><span class="lang-name">Français</span><span class="lang-level">Courant</span></div>
         <div class="lang-item"><span class="lang-name">Anglais</span><span class="lang-level">Professionnel</span></div>
       </section>
 
       <section>
-        <div class="section-title">Intérêts</div>
+        <div class="stitle">Intérêts</div>
         <div class="interest"><strong>Sports</strong><span>Boxe, natation, padel</span></div>
         <div class="interest"><strong>Voyages</strong><span>France, Chine, Dubaï</span></div>
       </section>
 
     </aside>
 
+    <!-- MAIN -->
     <main class="main-content">
 
+      <!-- FOCUS BDD / WORKFLOWS / IA / SaaS -->
       <section>
-        <div class="section-title">Expérience</div>
+        <div class="stitle">Focus technique — Domaines d'expertise</div>
+        <div class="focus-grid">
+
+          <div class="focus-card">
+            <div class="focus-card-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+              Bases de données & Data
+            </div>
+            <ul class="focus-list">
+              <li><strong>Conception & modélisation</strong> de schémas relationnels complexes</li>
+              <li><strong>Optimisation des performances</strong> et des requêtes SQL avancées</li>
+              <li>Gestion de BDD relationnelles : <strong>PostgreSQL, MySQL, MariaDB</strong></li>
+              <li>Notions de BDD spécialisées : hiérarchiques, orientées objets, <strong>vectorielles</strong></li>
+              <li>Analyse et exploitation de données applicatives métiers</li>
+              <li>Structuration des données pour applications SaaS multi-tenant</li>
+            </ul>
+          </div>
+
+          <div class="focus-card">
+            <div class="focus-card-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Workflows & Automatisation
+            </div>
+            <ul class="focus-list">
+              <li>Conception de <strong>workflows intelligents</strong> (n8n, orchestration)</li>
+              <li>Automatisation de processus métiers et techniques complexes</li>
+              <li>Déploiement et intégration d'<strong>agents IA autonomes</strong></li>
+              <li>Automatisation industrielle : PLC, domotique, capteurs/actionneurs</li>
+              <li>Pipelines de traitement de données automatisés</li>
+              <li>Intégrations multi-systèmes (ERP, API, IoT)</li>
+            </ul>
+          </div>
+
+          <div class="focus-card">
+            <div class="focus-card-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8v4l3 3"/></svg>
+              Intelligence Artificielle
+            </div>
+            <ul class="focus-list">
+              <li>IA appliquée à des <strong>cas concrets métiers</strong></li>
+              <li>Intégration de <strong>LLM</strong> dans des applications existantes</li>
+              <li>Conception de chatbots intelligents multi-canal</li>
+              <li>Mise en œuvre d'agents IA pour l'automatisation</li>
+              <li>Optimisation de systèmes existants par injection d'IA</li>
+              <li>Vision transverse IT / data / IA pour l'industrie africaine</li>
+            </ul>
+          </div>
+
+          <div class="focus-card">
+            <div class="focus-card-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+              Conception SaaS & Plateformes
+            </div>
+            <ul class="focus-list">
+              <li>Architecture de <strong>plateformes SaaS multi-tenant</strong></li>
+              <li>Conception de <strong>backends API</strong> robustes et scalables</li>
+              <li>Développement d'applications web, desktop et mobiles</li>
+              <li>Déploiement cloud : Docker, Linux, infrastructure auto-hébergée</li>
+              <li>Intégration logicielle avec systèmes matériels & industriels</li>
+              <li>Produits tech adaptés aux <strong>marchés africains</strong></li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EXPÉRIENCE -->
+      <section>
+        <div class="stitle">Expérience professionnelle</div>
         <div class="exp-list">
 
           <div class="exp-card">
-            <div class="exp-header">
+            <div class="exp-head">
               <div>
                 <div class="exp-company">ENIGMA-SYS</div>
-                <div class="exp-role">Ingénieur Systèmes, Automatisation &amp; IA</div>
+                <div class="exp-role">Ingénieur Systèmes, Automatisation &amp; IA — Fondateur</div>
               </div>
               <span class="exp-period">2021 – Aujourd'hui</span>
             </div>
             <ul class="exp-bullets">
-              <li>Conception, développement et intégration de solutions IT et d'automatisation pour environnements industriels, tertiaires et technologiques</li>
-              <li>Automatisation industrielle et domotique : conception d'architectures, intégration capteurs/actionneurs, logique de contrôle</li>
-              <li>Programmation et intégration d'automates industriels (PLC)</li>
-              <li>Prototypage et conception de systèmes embarqués sur plateformes ESP32 et Arduino</li>
-              <li>Intelligence artificielle appliquée, automatisation avancée de processus, conception de workflows intelligents, déploiement et intégration d'agents IA</li>
+              <li>Conception et déploiement de <strong>solutions IT complètes</strong> pour environnements industriels et technologiques</li>
+              <li><strong>Architecture de plateformes SaaS</strong> : conception multi-tenant, backends API, bases de données optimisées</li>
+              <li>Conception de <strong>workflows intelligents et agents IA</strong> pour l'automatisation de processus métiers</li>
+              <li>Intégration de <strong>LLM et chatbots</strong> pour le service client et la prospection automatisée</li>
+              <li>Automatisation industrielle et domotique : architectures, capteurs/actionneurs, logique de contrôle</li>
+              <li>Prototypage de systèmes embarqués (ESP32, Arduino) — supervision et maintenance de systèmes complexes</li>
             </ul>
             <div class="sub-projects">
               <div class="sub-card">
                 <div class="sub-name">Enigma Escape Game</div>
                 <div class="sub-period">2023 – Aujourd'hui</div>
                 <ul class="sub-bullets">
-                  <li>Conception de systèmes électroniques et automatisés pour expériences immersives</li>
+                  <li>Systèmes électroniques et automatisés pour expériences immersives</li>
                   <li>Intégration logicielle, automatismes et contrôle temps réel</li>
-                  <li>Exploitation et maintenance des infrastructures techniques</li>
+                  <li>Exploitation et maintenance des infrastructures</li>
                 </ul>
               </div>
               <div class="sub-card">
                 <div class="sub-name">Laser War</div>
                 <div class="sub-period">2024 – Aujourd'hui</div>
                 <ul class="sub-bullets">
-                  <li>Conception et mise en œuvre d'une infrastructure technique complète</li>
+                  <li>Infrastructure technique complète conçue de zéro</li>
                   <li>Automatisation, contrôle des systèmes et supervision</li>
-                  <li>Optimisation et évolution continue des installations</li>
+                  <li>Optimisation et évolution continue</li>
                 </ul>
               </div>
             </div>
           </div>
 
           <div class="exp-card">
-            <div class="exp-header">
+            <div class="exp-head">
               <div>
                 <div class="exp-company">DPS AFRIQUE</div>
                 <div class="exp-role">Fondateur / Direction technique</div>
@@ -273,14 +504,14 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
             </div>
             <ul class="exp-bullets">
               <li>Vente, intégration, installation et maintenance de machines industrielles</li>
-              <li>Support technique, maintenance préventive et corrective, SAV</li>
-              <li>Représentant officiel INX SAKATA — leader mondial d'encre numérique</li>
-              <li>Interface clients, fournisseurs et partenaires techniques</li>
+              <li>Support technique, maintenance préventive &amp; corrective, SAV</li>
+              <li>Représentant officiel <strong>INX SAKATA</strong> — leader mondial d'encre numérique</li>
+              <li>Interface clients, fournisseurs et partenaires techniques — pilotage global de l'activité</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <div class="exp-header">
+            <div class="exp-head">
               <div>
                 <div class="exp-company">O2i (Groupe français)</div>
                 <div class="exp-role">Ingénieur support &amp; maintenance machines</div>
@@ -289,14 +520,13 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
             </div>
             <ul class="exp-bullets">
               <li>Installation, maintenance et dépannage de machines industrielles</li>
-              <li>Interventions multi-pays en Afrique de l'Ouest et France</li>
+              <li>Interventions multi-pays en <strong>Afrique de l'Ouest et France</strong></li>
               <li>Diagnostic d'incidents complexes et résolution sur site (niveau L2/L3)</li>
-              <li>Autonomie opérationnelle et gestion de la relation client</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <div class="exp-header">
+            <div class="exp-head">
               <div>
                 <div class="exp-company">AFRIPUB</div>
                 <div class="exp-role">Cofondateur / Responsable technique &amp; systèmes</div>
@@ -304,15 +534,14 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
               <span class="exp-period">2010 – 2014</span>
             </div>
             <ul class="exp-bullets">
-              <li>Structuration technique complète de l'entreprise</li>
-              <li>Mise en place des systèmes informatiques et des outils de production</li>
+              <li>Structuration technique complète de l'entreprise (systèmes, outils de production)</li>
               <li>Maintenance, optimisation et évolution des chaînes de production</li>
-              <li>Interface technique entre informatique et équipements industriels</li>
+              <li>Interface technique informatique / équipements industriels</li>
             </ul>
           </div>
 
           <div class="exp-card">
-            <div class="exp-header">
+            <div class="exp-head">
               <div>
                 <div class="exp-company">AFRIBACHE</div>
                 <div class="exp-role">Responsable informatique &amp; support production</div>
@@ -320,17 +549,17 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
               <span class="exp-period">2005 – 2010</span>
             </div>
             <ul class="exp-bullets">
-              <li>Gestion complète du parc informatique</li>
-              <li>Support utilisateurs et systèmes</li>
-              <li>Interface informatique / équipements industriels</li>
+              <li>Gestion complète du parc informatique — support utilisateurs et systèmes</li>
+              <li>Intégration systèmes liés à la production / équipements industriels</li>
             </ul>
           </div>
 
         </div>
       </section>
 
+      <!-- FORMATION -->
       <section>
-        <div class="section-title">Formation</div>
+        <div class="stitle">Formation</div>
         <div class="edu-wrap">
           <div class="edu-item"><span class="edu-degree">Baccalauréat – Gestion Informatique</span><span class="edu-year">2004</span></div>
           <div class="edu-item"><span class="edu-degree">Master – Ingénierie Réseaux &amp; Infrastructures IT</span><span class="edu-year">2007</span></div>
@@ -351,12 +580,25 @@ a,button{transition:color .16s ease,background .16s ease,box-shadow .16s ease}
 
 <script>
 (function(){
+  // Theme toggle
   var t=document.querySelector('[data-theme-toggle]');
   var r=document.documentElement;
   var d=r.getAttribute('data-theme')||'dark';
   var sun='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
   var moon='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
   if(t){t.innerHTML=d==='dark'?sun:moon;t.addEventListener('click',function(){d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);t.innerHTML=d==='dark'?sun:moon;});}
+
+  // Photo upload
+  var inp=document.getElementById('photoInput');
+  var img=document.getElementById('photoImg');
+  var ph=document.getElementById('photoPlaceholder');
+  if(inp){inp.addEventListener('change',function(e){
+    var f=e.target.files[0];
+    if(!f)return;
+    var reader=new FileReader();
+    reader.onload=function(ev){img.src=ev.target.result;img.style.display='block';ph.style.display='none';};
+    reader.readAsDataURL(f);
+  });}
 })();
 </script>
 </body>
